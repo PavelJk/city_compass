@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Городской компас — где выгоднее сдавать квартиру</title>
+<link rel="icon" href="compass.svg">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/solid.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/regular.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="css/app.css?v=223">
+<script>try{document.documentElement.dataset.theme=JSON.parse(localStorage.getItem('theme'))||'dark'}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <div class="map-bar">
+    <button class="mapbtn" id="mapMenuBtn" type="button" aria-expanded="false" aria-controls="mapMenu" title="Режим карты, слои и сетка"><i class="fa-solid fa-layer-group"></i><span id="mapMode">Выгода</span><i class="chev fa-solid fa-chevron-down"></i></button>
+    <div class="mapmenu" id="mapMenu" hidden>
+      <div class="mm-sec"><div class="mm-title">Что показывает карта</div>
+        <div class="seg" id="modeSeg" role="group" aria-label="Что показывает сетка">
+          <button data-mode="profit" class="on">Выгода</button>
+          <button data-mode="env">Среда</button>
+          <button data-mode="ppm">Цена</button>
+          <button data-mode="market">Рынок</button>
+        </div></div>
+      <div class="mm-sec"><div class="mm-title">Подложка</div>
+        <div class="seg basemaps" id="baseSeg" role="group" aria-label="Подложка">
+          <button data-base="light" class="on">Карта</button>
+          <button data-base="sat">Спутник</button>
+        </div></div>
+      <div class="mm-sec"><div class="mm-title">Слои</div>
+        <div class="seg icons" id="showSeg" role="group" aria-label="Слои">
+          <button data-show="grid" title="Показать все ячейки сетки, даже пустые"><i class="fa-solid fa-border-all"></i>Все ячейки</button>
+          <button data-show="flats" class="on" title="Квартиры"><i class="fa-solid fa-house"></i>Квартиры</button>
+          <button data-show="poi" class="on" title="Места в выбранной ячейке"><i class="fa-solid fa-location-dot"></i>Места</button>
+        </div></div>
+      <div class="mm-sec mm-grid"></div>
+      <div class="mm-sec"><div class="mm-title">Оформление</div>
+        <div class="seg" id="themeSeg" role="group" aria-label="Тема">
+          <button data-theme="light"><i class="fa-solid fa-sun"></i>Светлая</button>
+          <button data-theme="dark"><i class="fa-solid fa-moon"></i>Тёмная</button>
+        </div>
+        <button class="mm-link" type="button" data-view="data"><i class="fa-regular fa-circle-question"></i>Справка: откуда данные</button></div>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Разделы">
+    <button data-view="map" class="on"><i class="fa-solid fa-map-location-dot"></i><span>Карта</span></button>
+    <button data-view="rank"><i class="fa-solid fa-ranking-star"></i><span>Рейтинг</span></button>
+    <button data-view="compare"><i class="fa-solid fa-scale-balanced"></i><span>Сравнение</span><b id="cmpCount" hidden></b></button>
+    <button data-view="calc"><i class="fa-solid fa-sliders"></i><span>Модель</span></button>
+  </nav>
+  <div class="top-end">
+    <button class="dock-show" id="dockShow" type="button" aria-label="Показать список квартир" title="Показать список квартир"><i class="fa-solid fa-list"></i><span>Квартиры</span></button>
+    <button class="profile-btn" id="profileBtn" data-view="profile"></button>
+  </div>
+</header>
+
+<main>
+  <section class="view on" id="view-map">
+    <div class="map-wrap">
+      <div id="map"></div>
+      <div class="map-stack" id="mapStack">
+        <div class="map-legend" id="legend"></div>
+      </div>
+    </div>
+    <aside class="dock" id="dock" aria-live="polite"></aside>
+  </section>
+
+  <section class="view page" id="view-rank"></section>
+  <section class="view page" id="view-compare"></section>
+  <section class="view page" id="view-calc"></section>
+  <section class="view page" id="view-data"></section>
+  <section class="view page" id="view-profile"></section>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module" src="js/app.js?v=223"></script>
+</body>
+</html>

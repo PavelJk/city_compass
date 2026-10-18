@@ -1,0 +1,6 @@
+data/users.db
+data/inbox/
+data/osm/
+__pycache__/
+*.pyc
+module/realty_module.zip
